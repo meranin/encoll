@@ -9,10 +9,15 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
-        <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
         <h1 class="title">
             {{ $post->title }}
         </h1>
+        <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
+        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <input type="submit" name="delete" value="delete" onClick="return delete_alert(event);">
+        </form>
         <div class="content">
             <div class="content__post">
                 <h3>本文</h3>
